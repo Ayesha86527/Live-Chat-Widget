@@ -64,7 +64,7 @@ def chat_completion(user_query):
         max_completion_tokens=2000,
         top_p=1,
         reasoning_effort="low",
-        stream=True,
+        stream=False,
         stop=None
     )
     
@@ -172,6 +172,7 @@ def get_chat_history(limit: int = 50, offset: int = 0, db: Session = Depends(get
     except Exception as e:
         logger.error(f"Error fetching chat history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 
