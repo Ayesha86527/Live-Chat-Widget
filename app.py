@@ -17,7 +17,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your frontend URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -172,6 +172,7 @@ def get_chat_history(limit: int = 50, offset: int = 0, db: Session = Depends(get
     except Exception as e:
         logger.error(f"Error fetching chat history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 
