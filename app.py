@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field
+from fastapi.middleware.cors import CORSMiddleware
 from groq import Groq
 import logging
 from dotenv import load_dotenv
@@ -13,6 +14,14 @@ import uuid
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Create Database Tables
 Base.metadata.create_all(bind=engine)
@@ -163,6 +172,7 @@ def get_chat_history(limit: int = 50, offset: int = 0, db: Session = Depends(get
     except Exception as e:
         logger.error(f"Error fetching chat history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 
