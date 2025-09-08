@@ -2,6 +2,10 @@ fastapi
 pydantic
 uvicorn
 gunicorn
+logging
+dotenv
+os
 groq
 sqlalchemy
 psycopg2-binary
+
